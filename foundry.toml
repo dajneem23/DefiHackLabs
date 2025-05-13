@@ -1,0 +1,30 @@
+[profile.default]
+# solc-version = "0.8.20"
+auto_detect_solc = true
+src = "contracts"
+out = "out"
+libs = ["lib"]
+cache = true
+cache_path = 'cache'
+optimizer = true
+optimize = true
+optimize_runs = 200
+remappings = ['@openzeppelin/=lib/openzeppelin-contracts/']
+
+rpc_endpoints = { mainnet = "https://rpc.ankr.com/eth", optimism = "https://rpc.ankr.com/optimism" , fantom = "https://rpc.ankr.com/fantom", arbitrum = "https://rpc.ankr.com/arbitrum", bsc = "https://rpc.ankr.com/bsc", moonriver = "https://moonriver.public.blastapi.io", gnosis = "https://rpc.ankr.com/gnosis", avax = "https://rpc.ankr.com/avalanche", polygon = "https://rpc.ankr.com/polygon"}
+
+[profile.hardhat]
+src = "contracts"
+out = "artifacts"
+libs = ["node_modules"]
+
+[profile.zksync]
+libs = ['lib']
+fallback_oz = true
+mode = "3"
+match_test="test/zksync/**.sol"
+no_match_test="test/**.sol"
+
+[rpc_endpoints]
+zksync = "${ZKSYNCSEPOLIA_RPC_URL}"
+

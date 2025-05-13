@@ -1,0 +1,5 @@
+{
+	"solidity.packageDefaultDependenciesContractsDirectory": ["src", "contracts"],
+	"solidity.packageDefaultDependenciesDirectory": ["node_modules", "lib"],
+	"solidity.remappingsUnix": ["@openzeppelin/=node_modules/@openzeppelin/"]
+}

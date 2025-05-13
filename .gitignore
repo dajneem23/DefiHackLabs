@@ -1,0 +1,42 @@
+node_modules
+zkout
+out
+lib
+cache
+.yarn
+# Compiler files
+cache/
+out/
+forge_test.log
+
+# Ignores development broadcast logs
+!/broadcast
+/broadcast/*/31337/
+/broadcast/**/dry-run/
+
+# Docs
+docs/
+
+# Dotenv file
+.env
+
+#Hardhat files
+cache
+artifacts
+cache-zk
+artifacts-zk
+cache_hardhat
+zkout
+
+node_modules
+dist
+typechain-types
+cache_hardhat-zk/solidity-files-cache.json
+
+
+openzeppelin-contracts
+
+forge-std
+package-lock.json
+yarn-error.log
+yarn.lock
