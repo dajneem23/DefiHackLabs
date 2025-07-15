@@ -1,4 +1,4 @@
-# The Mobius Token Exploit
+# The Mobius Token Exploit explanation
 The Mobius Token Exploit was a smart contract vulnerability that led to a loss of $2.15 million on Binance Smart Chain (BSC), caused by improper handling of token decimal precision in the contract’s logic. Here’s a breakdown of what happened:
 
 ⸻

