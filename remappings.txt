@@ -1,2 +1,2 @@
 @openzeppelin=openzeppelin-contracts/
-solmate=solmate/    
+solmate=solmate/
