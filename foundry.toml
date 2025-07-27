@@ -1,5 +1,4 @@
 [profile.default]
-# solc-version = "0.8.20"
 auto_detect_solc = true
 src = "contracts"
 out = "out"
@@ -11,6 +10,7 @@ optimize = true
 optimize_runs = 200
 remappings = ['@openzeppelin/=lib/openzeppelin-contracts/']
 fs_permissions = [{ access = "read", path = "./"}]
+solc_version = "0.8.20"
 
 [fmt]
 line_length = 120
@@ -39,8 +39,9 @@ mode = "3"
 match_test="test/zksync/**.sol"
 no_match_test="test/**.sol"
 
+
 [rpc_endpoints]
-zksync = "${ZKSYNCSEPOLIA_RPC_URL}"
+zksync = "https://rpc.ankr.com/zksync_era"
 mainnet = "https://eth.llamarpc.com"
 blast = "https://rpc.ankr.com/blast"
 optimism = "https://mainnet.optimism.io"
@@ -55,3 +56,5 @@ celo = "https://rpc.ankr.com/celo"
 base = "https://developer-access-mainnet.base.org"
 linea = "https://linea.drpc.org"
 mantle = "https://rpc.mantle.xyz"
+sonic = "https://rpc.soniclabs.com"
+
